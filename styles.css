@@ -1,0 +1,65 @@
+body{
+    margin: 0;
+    font-size: 40px;
+}
+
+div{
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    gap: 10px;
+}
+
+.inputFields{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 200px;
+}
+
+.display{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+}
+
+.operations{
+    justify-content: center;
+    display:flex;
+    gap: 10px;
+}
+
+.operation{
+    width: 30px;
+}
+
+.numbers{
+    justify-content: center;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
+}
+
+.number{
+    width: 50px;
+}
+
+.specials{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.decimal{
+    width: 30px;
+}

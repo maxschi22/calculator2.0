@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/styles.css" />
+    <script src="script.js" defer></script>
     <title>Calculator</title>
   </head>
   <body>
@@ -10,25 +12,30 @@
       <div class="display"></div>
       <div class="inputFields">
         <div class="operations">
-          <div class="operation">+</div>
-          <div class="operation">-</div>
-          <div class="operation">*</div>
-          <div class="operation">/</div>
+          <button class="clear">C</button>
+          <button class="operation add input">+</button>
+          <button class="operation sub input">-</button>
+          <button class="operation multiply input">*</button>
+          <button class="operation divide input">/</button>
         </div>
         <div class="numbers">
-          <div class="number">0</div>
-          <div class="number">1</div>
-          <div class="number">2</div>
-          <div class="number">3</div>
-          <div class="number">4</div>
-          <div class="number">5</div>
-          <div class="number">6</div>
-          <div class="number">7</div>
-          <div class="number">8</div>
-          <div class="number">9</div>
+          <button class="number input">7</button>
+          <button class="number input">8</button>
+          <button class="number input">9</button>
+          <button class="number input">4</button>
+          <button class="number input">5</button>
+          <button class="number input">6</button>
+          <button class="number input">1</button>
+          <button class="number input">2</button>
+          <button class="number input">3</button>
+          <button class="number input">0</button>
         </div>
-        <div class="decimal">.</div>
+        <div class="specials">
+          <button class="decimal input">.</button>
+          <button class="equal input">=</button>
+        </div>
       </div>
     </div>
+    <div class="log"></div>
   </body>
 </html>
