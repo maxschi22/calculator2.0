@@ -32,7 +32,7 @@ function disableOperators(mode) {
 }
 
 function isLastCharOperatorOrDot(lastChar) {
-  return ["+", "-", "*", "/", "."].includes(lastChar);
+  return ["+", "*", "/", "."].includes(lastChar); // "-" entfernt
 }
 
 // Key Handling
@@ -49,12 +49,12 @@ function handleKeyPress(event) {
     event.key === "/"
   ) {
     if (isLastCharOperatorOrDot(lastChar)) {
-      throw new Error("Auf einen Opeartor kann kein Operator folgen");
+      throw new Error("Auf einen Operator kann kein Operator folgen");
     }
     display.textContent += key;
   } else if (event.key === "Enter") {
     handleEqualClick();
-  } else if (event.key === "Escape") {
+  } else if (event.key === "Escape" || event.key === "Delete") {
     clearInput();
   } else if (event.key === "." || event.key === ",") {
     if (isLastCharOperatorOrDot(lastChar)) {
@@ -77,6 +77,11 @@ function handleInputClick(event) {
   // Operatoren basierend auf dem letzten Zeichen aktivieren oder deaktivieren
   if (!isEmpty && !isLastCharOperatorOrDot(lastChar)) {
     disableOperators(false);
+    if (!/[+\-*/]/.test(display.textContent)) {
+      equal.disabled = true;
+    } else {
+      equal.disabled = false;
+    }
   } else {
     disableOperators(true);
   }
@@ -111,17 +116,37 @@ function getFormula(expression) {
 
   for (let i = 0; i < expression.length; i++) {
     const char = expression[i];
+
     if ((char >= "0" && char <= "9") || char === ".") {
       currentNumber += char;
-    } else if (char === "+" || char === "-" || char === "*" || char === "/") {
-      numbers.push(parseFloat(currentNumber));
+    } else if (char === "+" || char === "*" || char === "/") {
+      // Zahl beenden und Operator hinzufügen
+      if (currentNumber !== "") {
+        numbers.push(parseFloat(currentNumber));
+        currentNumber = "";
+      }
       operators.push(char);
-      currentNumber = "";
+    } else if (char === "-") {
+      // Unterscheidung: Operator oder Vorzeichen?
+      if (
+        i === 0 || // Am Anfang der Eingabe
+        ["+", "-", "*", "/"].includes(expression[i - 1]) // Nach einem anderen Operator
+      ) {
+        currentNumber += char; // Als Vorzeichen behandeln
+      } else {
+        // Zahl beenden und Operator hinzufügen
+        if (currentNumber !== "") {
+          numbers.push(parseFloat(currentNumber));
+          currentNumber = "";
+        }
+        operators.push(char);
+      }
     }
   }
-  numbers.push(parseFloat(currentNumber)); //pusht die letzte zahl, da auf diese kein operator mehr folgt
 
-  // console.log(numbers, operators);
+  if (currentNumber !== "") {
+    numbers.push(parseFloat(currentNumber)); // Letzte Zahl hinzufügen
+  }
 
   return { numbers, operators };
 }
@@ -129,7 +154,7 @@ function getFormula(expression) {
 function logCalculation(numbers, operators, result) {
   if (!logTable.innerHTML.trim()) {
     logTable.innerHTML = `
-      <table>
+      <table class="loggingTable">
         <thead>
           <tr>
             <th>Geloggte Rechnungen</th>
@@ -150,7 +175,7 @@ function logCalculation(numbers, operators, result) {
 
   // Füge die zusammengesetzte Rechnung als neue Zeile in die Tabelle ein
   const newRow = document.createElement("tr");
-  newRow.innerHTML = `<td>${recentCalculation} = ${result}</td>`;
+  newRow.innerHTML = `<td class="logging"> ${recentCalculation} = ${result}</td>`;
   tbody.appendChild(newRow);
 }
 

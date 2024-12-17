@@ -1,10 +1,10 @@
 body{
     margin: 0;
     font-size: 40px;
+    background-color: lightgray;
 }
 
 div{
-    border: 1px solid black;
     border-radius: 5px;
 }
 
@@ -14,23 +14,28 @@ div{
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 100vh;
+    height: 80vh;
     gap: 10px;
 }
 
 .inputFields{
+    border: 1px solid black;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 200px;
+    background-color: rgb(244, 244, 244);
 }
 
 .display{
+    border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100px;
     width: 100%;
+    background-color: rgb(244, 244, 244);
 }
 
 .operations{
@@ -62,4 +67,13 @@ div{
 
 .decimal{
     width: 30px;
+}
+
+.logging{
+    font-size: 21px;
+}
+
+.loggingTable{
+    background-color: rgb(244, 244, 244);
+    border: 1px solid black;
 }
