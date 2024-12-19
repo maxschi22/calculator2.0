@@ -114,3 +114,11 @@ h1{
     border: 1px solid black;
     border-radius: 15px;
 }
+
+button:hover{
+    opacity: 0.8;
+}
+
+button:active{
+    opacity: 0.8;
+}
