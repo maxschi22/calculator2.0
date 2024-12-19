@@ -1,10 +1,16 @@
 body{
     margin: 0;
-    font-size: 40px;
-    background-color: #828A95;
+    font-size: 5vh;
+    background-color: rgb(181, 181, 181);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
 }
 
-div, table{
+
+div{
     border-radius: 5px;
     background-color: #828A95;
 }
@@ -13,10 +19,11 @@ button{
     background-color: #CCD7E4;
     height: 50px;
     width: 50px;
+    border-radius: 15px;
 }
 
 h1{
-    font-size: 8vw;
+    font-size: 5vh;
 }
 
 .container {
@@ -25,8 +32,9 @@ h1{
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 80vh;
     gap: 10px;
+    width: 80%;
+    border-radius: 15px;
 }
 
 .inputFields{
@@ -34,7 +42,7 @@ h1{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 100%;
+    width: 90%;
 }
 
 .display{
@@ -42,15 +50,20 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 10%;
-    width: 100%;
-    background-color: rgb(221, 221, 221);
+    width: 90%;
+    background-color: rgb(243, 243, 243);
+    border-radius: 15px;
+    font-size: 5vw;
 }
 
 .operations{
     justify-content: center;
     display:flex;
-    gap: 10px;
+    gap: 2px;
+}
+
+.input{
+    font-size: 2vh;
 }
 
 .numbers{
@@ -58,6 +71,7 @@ h1{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
+    gap: 2px;
 }
 
 .number{
@@ -73,15 +87,22 @@ h1{
 .specials{
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 2px;
+    width: 100%;
+}
+
+.log{
+    margin: 20px;
+    background-color: white;
+    border-radius: 15px;
 }
 
 .logging{
-    font-size: 21px;
+    font-size: 3vh;
 }
 
-.loggingTable{
-    margin-top: 10px;
+.loggingTable {
     background-color: rgb(244, 244, 244);
     border: 1px solid black;
+    border-radius: 15px;
 }

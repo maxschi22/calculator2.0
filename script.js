@@ -23,6 +23,7 @@ equal.addEventListener("click", handleEqualClick);
 //Operatoren deaktivieren solange noch keine Zahl eingegeben wurde
 disableOperators(true);
 
+//Funktion zum deaktivieren/aktivieren von Operatoren
 function disableOperators(mode) {
   operators.forEach((operator) => {
     operator.disabled = mode;
@@ -31,6 +32,7 @@ function disableOperators(mode) {
   decimal.disabled = mode;
 }
 
+//Überprüfung ob letzter Char ein Operator oder ein Punkt ist
 function isLastCharOperatorOrDot(lastChar) {
   return ["+", "*", "/", "."].includes(lastChar); // "-" entfernt
 }
@@ -65,7 +67,7 @@ function handleKeyPress(event) {
   }
 }
 
-//Displays input
+//Eingaben anzeigen
 function handleInputClick(event) {
   const value = event.target.textContent;
   display.textContent += value; // Wert an den Display anhängen
@@ -87,6 +89,7 @@ function handleInputClick(event) {
   }
 }
 
+// Ausführung von Operationen
 function handleEqualClick() {
   const calculation = display.textContent;
   const { numbers, operators } = getFormula(calculation);
@@ -99,16 +102,19 @@ function handleEqualClick() {
   }
 }
 
+// Display leeren
 function clearInput() {
   display.textContent = "";
 }
 
+// Die Letzte eingabe auf dem Display rückgängig machen
 function deleteLastInput(event) {
   if (event.key === "Backspace") {
     display.textContent = display.textContent.slice(0, -1);
   }
 }
 
+// Input in eine Formel umwandeln
 function getFormula(expression) {
   const numbers = [];
   const operators = [];
@@ -151,6 +157,7 @@ function getFormula(expression) {
   return { numbers, operators };
 }
 
+// Operation loggen
 function logCalculation(numbers, operators, result) {
   if (!logTable.innerHTML.trim()) {
     logTable.innerHTML = `
@@ -179,6 +186,7 @@ function logCalculation(numbers, operators, result) {
   tbody.appendChild(newRow);
 }
 
+// Formel berechnen
 function calculate(numbers, operators) {
   // Kopien der originalen Arrays für Logging erstellen
   const originalNumbers = [...numbers];
