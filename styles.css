@@ -43,6 +43,7 @@ h1{
     text-align: center;
     width: 80%;
     border-radius: 15px;
+    overflow:auto;
 }
 
 .inputFields{
@@ -62,8 +63,8 @@ h1{
 }
 
 .operations{
-    justify-content: center;
     display:flex;
+    justify-content: center;
     gap: var(--button-gap);
 }
 
