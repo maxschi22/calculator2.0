@@ -148,6 +148,6 @@ button:active{
     border-radius: 0;
 }
 
-#showElement{
+#hideElement{
     display: none;
 }

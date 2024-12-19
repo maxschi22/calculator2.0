@@ -163,12 +163,13 @@ function clearLog() {
   logTable.innerHTML = `
   <table class="loggingTable">
     <thead>
+          <tr>
+            <th>Geloggte Rechnungen</th>
+          </tr>
     </thead>
     <tbody>
     </tbody>
   </table>`;
-  logTable.setAttribute("id", "showElement");
-  clearLogButton.setAttribute("id", "showElement");
 }
 
 // Operation loggen
@@ -184,7 +185,6 @@ function logCalculation(numbers, operators, result) {
         <tbody>
         </tbody>
       </table>`;
-    logTable.removeAttribute("id");
     clearLogButton.removeAttribute("id");
   }
 
