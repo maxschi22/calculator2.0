@@ -10,6 +10,7 @@ const equal = document.querySelector(".equal");
 const decimal = document.querySelector(".decimal");
 const clearButton = document.querySelector(".clear");
 const logTable = document.querySelector(".log");
+const clearLogButton = document.querySelector(".clearLog");
 
 //EvenListener
 document.addEventListener("keydown", handleKeyPress);
@@ -19,6 +20,7 @@ inputFields.forEach((input) => {
 });
 clearButton.addEventListener("click", clearInput);
 equal.addEventListener("click", handleEqualClick);
+clearLogButton.addEventListener("click", clearLog);
 
 //Operatoren deaktivieren solange noch keine Zahl eingegeben wurde
 disableOperators(true);
@@ -157,6 +159,18 @@ function getFormula(expression) {
   return { numbers, operators };
 }
 
+function clearLog() {
+  logTable.innerHTML = `
+  <table class="loggingTable">
+    <thead>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>`;
+  logTable.setAttribute("id", "showElement");
+  clearLogButton.setAttribute("id", "showElement");
+}
+
 // Operation loggen
 function logCalculation(numbers, operators, result) {
   if (!logTable.innerHTML.trim()) {
@@ -170,6 +184,8 @@ function logCalculation(numbers, operators, result) {
         <tbody>
         </tbody>
       </table>`;
+    logTable.removeAttribute("id");
+    clearLogButton.removeAttribute("id");
   }
 
   const tbody = logTable.querySelector("tbody"); // Zugriff auf den Tabellenkörper
