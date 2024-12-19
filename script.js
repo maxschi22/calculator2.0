@@ -95,7 +95,7 @@ function handleEqualClick() {
   const { numbers, operators } = getFormula(calculation);
   console.log(numbers);
   if (numbers.length < 2 || numbers.includes(NaN)) {
-    display.textContent = "Es müssen mindestens 2 Zahlen gegeben sein!";
+    throw new Error("Es müssen mindestens 2 Zahlen gegeben sein!");
   } else {
     const result = calculate(numbers, operators);
     display.textContent = result;
