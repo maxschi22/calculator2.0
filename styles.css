@@ -1,6 +1,14 @@
+:root{
+    --text-size: 4vh;
+    --display-text-size: 3vh;
+    --button-gap: 2px;
+    --div-background-color: #3b3f3f;
+    --button-background-color: #00fddc;
+}
+
 body{
     margin: 0;
-    font-size: 5vh;
+    font-size: var(--text-size);
     background-color: rgb(181, 181, 181);
     display: flex;
     flex-direction: column;
@@ -12,18 +20,19 @@ body{
 
 div{
     border-radius: 5px;
-    background-color: #828A95;
+    background-color: var(--div-background-color);
 }
 
 button{
-    background-color: #CCD7E4;
+    background-color: var(--button-background-color);
     height: 50px;
     width: 50px;
     border-radius: 15px;
 }
 
 h1{
-    font-size: 5vh;
+    font-size: var(--text-size);
+    color:white;
 }
 
 .container {
@@ -32,7 +41,6 @@ h1{
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 10px;
     width: 80%;
     border-radius: 15px;
 }
@@ -53,17 +61,17 @@ h1{
     width: 90%;
     background-color: rgb(243, 243, 243);
     border-radius: 15px;
-    font-size: 5vw;
+    font-size: var(--display-text-size);
 }
 
 .operations{
     justify-content: center;
     display:flex;
-    gap: 2px;
+    gap: var(--button-gap);
 }
 
 .input{
-    font-size: 2vh;
+    font-size: var(--text-size);
 }
 
 .numbers{
@@ -71,7 +79,7 @@ h1{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
-    gap: 2px;
+    gap: var(--button-gap);
 }
 
 .number{
@@ -87,7 +95,7 @@ h1{
 .specials{
     display: flex;
     justify-content: center;
-    gap: 2px;
+    gap: var(--button-gap);
     width: 100%;
 }
 
@@ -98,7 +106,7 @@ h1{
 }
 
 .logging{
-    font-size: 3vh;
+    font-size: var(--text-size);
 }
 
 .loggingTable {
