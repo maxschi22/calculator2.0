@@ -33,6 +33,7 @@ button{
 h1{
     font-size: var(--text-size);
     color:white;
+    margin: 5px;
 }
 
 .container {
