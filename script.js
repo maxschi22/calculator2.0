@@ -160,6 +160,7 @@ function getFormula(expression) {
 }
 
 function clearLog() {
+  loggedCalculations = 0;
   logTable.innerHTML = `
   <table class="loggingTable">
     <thead>
