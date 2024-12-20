@@ -172,6 +172,7 @@ function clearLog() {
   </table>`;
 }
 
+let loggedCalculations = 0;
 // Operation loggen
 function logCalculation(numbers, operators, result) {
   if (!logTable.innerHTML.trim()) {
@@ -195,10 +196,10 @@ function logCalculation(numbers, operators, result) {
   for (let i = 0; i < operators.length; i++) {
     recentCalculation += ` ${operators[i]} ${numbers[i + 1]}`; // Füge Operator und nächste Zahl hinzu
   }
-
+  loggedCalculations++;
   // Füge die zusammengesetzte Rechnung als neue Zeile in die Tabelle ein
   const newRow = document.createElement("tr");
-  newRow.innerHTML = `<td class="logging"> ${recentCalculation} = ${result}</td>`;
+  newRow.innerHTML = `<td class="logging"> ${loggedCalculations}.Operation| ${recentCalculation} = ${result}</td>`;
   tbody.appendChild(newRow);
 }
 
