@@ -106,6 +106,7 @@ function handleEqualClick() {
 
 // Display leeren
 function clearInput() {
+  disableOperators(true);
   display.textContent = "";
 }
 
