@@ -135,6 +135,10 @@ td{
     border-top: 1px solid black;    
 }
 
+td:first-child{
+    border-right: 1px solid black;
+}
+
 button:hover{
     opacity: 0.8;
 }

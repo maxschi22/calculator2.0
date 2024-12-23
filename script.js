@@ -173,6 +173,17 @@ function getFormula(expression) {
     numbers.push(parseFloat(currentNumber)); // Letzte Zahl hinzufügen
   }
 
+  // Überprüfen, ob der letzte Operator in der Liste ein Operator ist
+  if (
+    operators.length > 0 &&
+    ["+", "-", "*", "/"].includes(operators[operators.length - 1])
+  ) {
+    let error =
+      "Die Eingabe endet mit einem Operator. Bitte überprüfen Sie die Eingabe.";
+    activateSnackbar(error);
+    throw new Error(error);
+  }
+
   return { numbers, operators };
 }
 
@@ -198,7 +209,7 @@ function logCalculation(numbers, operators, result) {
       <table class="loggingTable">
         <thead>
           <tr>
-            <th>Geloggte Rechnungen</th>
+            <th colspan="2">Geloggte Rechnungen</th>
           </tr>
         </thead>
         <tbody>
@@ -218,7 +229,7 @@ function logCalculation(numbers, operators, result) {
   loggedCalculations++;
   // Füge die zusammengesetzte Rechnung als neue Zeile in die Tabelle ein
   const newRow = document.createElement("tr");
-  newRow.innerHTML = `<td class="logging"> ${loggedCalculations}.Operation| ${recentCalculation} = ${result}</td>`;
+  newRow.innerHTML = `<td class="logging"> ${loggedCalculations}.Operation</td><td class="logging"> ${recentCalculation} = ${result}</td>`;
   tbody.appendChild(newRow);
 }
 
