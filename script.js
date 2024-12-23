@@ -75,8 +75,7 @@ function handleKeyPress(event) {
   } else if (event.key === "." || event.key === ",") {
     if (isLastCharOperatorOrDot(lastChar)) {
       let error = "Auf einen Operator/Komma kann kein Komma folgen";
-      activateSnackbar(error);
-      throw new Error(error);
+      throwError(error);
     } else {
       display.textContent += ".";
     }
@@ -112,8 +111,7 @@ function handleEqualClick() {
   console.log(numbers);
   if (numbers.length < 2 || numbers.includes(NaN)) {
     let error = "Es müssen mindestens 2 Zahlen gegeben sein!";
-    activateSnackbar(error);
-    throw new Error(error);
+    throwError(error);
   } else {
     const result = calculate(numbers, operators);
     display.textContent = result;
@@ -173,15 +171,23 @@ function getFormula(expression) {
     numbers.push(parseFloat(currentNumber)); // Letzte Zahl hinzufügen
   }
 
-  // Überprüfen, ob der letzte Operator in der Liste ein Operator ist
+  // Überprüfen, ob der letzte Operator in der Liste ein Operator ist, aber nur, wenn auch wirklich ein Operator vorhanden ist
   if (
     operators.length > 0 &&
-    ["+", "-", "*", "/"].includes(operators[operators.length - 1])
+    ["+", "-", "*", "/"].includes(operators[operators.length - 1]) &&
+    numbers.length === operators.length // Es muss eine Zahl nach dem letzten Operator kommen
   ) {
     let error =
-      "Die Eingabe endet mit einem Operator. Bitte überprüfen Sie die Eingabe.";
-    activateSnackbar(error);
-    throw new Error(error);
+      "Die Eingabe endet mit einem Operator. Bitte überprüfen Sie die Eingabe!";
+    throwError(error);
+  }
+
+  // Division durch 0 prüfen
+  for (let i = 0; i < operators.length; i++) {
+    if (operators[i] === "/" && numbers[i + 1] === 0) {
+      let error = "Division durch 0 ist nicht erlaubt!";
+      throwError(error);
+    }
   }
 
   return { numbers, operators };
@@ -287,4 +293,9 @@ function activateSnackbar(error) {
   setTimeout(function () {
     snackBar.className = snackBar.className.replace("show", "");
   }, 3000);
+}
+
+function throwError(error) {
+  activateSnackbar(error);
+  throw new Error(error);
 }
