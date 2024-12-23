@@ -186,6 +186,7 @@ button:active{
     float: right;
     font-size: 28px;
     font-weight: bold;
+    margin: 5px;
   }
   
   .close:hover,
