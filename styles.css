@@ -58,6 +58,8 @@ h1{
 .display{
     border: 1px solid black;
     padding: 0 10px 0 10px;
+    min-height: 32px;
+    min-width: 50%;
     background-color: rgb(243, 243, 243);
     border-radius: 15px;
     font-size: var(--display-text-size);
