@@ -143,16 +143,16 @@ button:active{
     opacity: 0.4;
 }
 
-.logContainer{
-    display:flex;
+.logContainer {
+    display: flex;
     justify-content: center;
-    background-color:rgb(181, 181, 181);
+    align-items: center;
+    background-color: rgb(181, 181, 181);
 }
-
 .clearLog{
-    margin-top: 60px;
     width: auto;
     border-radius: 0;
+    margin: 10px;
 }
 
 .openModalBtn{
