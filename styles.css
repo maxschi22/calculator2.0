@@ -1,9 +1,11 @@
 :root{
     --text-size: 4vh;
     --display-text-size: 3vh;
-    --button-gap: 2px;
+    --button-gap: 1px;
     --div-background-color: #3b3f3f;
     --button-background-color: #00fddc;
+    --border-radius-all: 15px;
+    --border-radius-table: 15px 0px 0px 15px;
 }
 
 body{
@@ -19,7 +21,6 @@ body{
 
 
 div{
-    border-radius: 5px;
     background-color: var(--div-background-color);
 }
 
@@ -27,7 +28,7 @@ button{
     background-color: var(--button-background-color);
     height: 50px;
     width: 50px;
-    border-radius: 15px;
+    border-radius: var(--border-radius-all);
 }
 
 h1{
@@ -42,9 +43,15 @@ h1{
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 90%;
-    border-radius: 15px;
+    width: 40%;
+    border-radius: var(--border-radius-all);
     overflow:auto;
+}
+
+@media(max-width: 600px){
+    .container{
+        width: 90%;
+    }
 }
 
 .inputFields{
@@ -61,7 +68,7 @@ h1{
     min-height: 32px;
     min-width: 50%;
     background-color: rgb(243, 243, 243);
-    border-radius: 15px;
+    border-radius: var(--border-radius-all);
     font-size: var(--display-text-size);
 }
 
@@ -108,7 +115,7 @@ th {
 .log{
     margin: 20px;
     background-color: white;
-    border-radius: 15px 0px 0px 15px;
+    border-radius: var(--border-radius-table);
     max-height: 200px;
     overflow-y: auto;
 }
@@ -121,7 +128,7 @@ th {
     background-color: rgb(244, 244, 244);
     width: auto;
     border: 1px solid black;
-    border-radius: 15px 0px 0px 15px;
+    border-radius: var(--border-radius-table);
 }
 
 td{
