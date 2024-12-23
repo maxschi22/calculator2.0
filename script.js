@@ -14,6 +14,7 @@ const clearLogButton = document.querySelector(".clearLog");
 const modal = document.getElementById("myModal");
 const openModalBtn = document.getElementsByClassName("openModalBtn")[0];
 const span = document.getElementsByClassName("close")[0];
+const snackBar = document.getElementById("snackbar");
 
 //EvenListener
 document.addEventListener("keydown", handleKeyPress);
@@ -73,7 +74,9 @@ function handleKeyPress(event) {
     clearInput();
   } else if (event.key === "." || event.key === ",") {
     if (isLastCharOperatorOrDot(lastChar)) {
-      throw new Error("Auf einen Operator kann kein Operator folgen");
+      let error = "Auf einen Operator/Komma kann kein Komma folgen";
+      activateSnackbar(error);
+      throw new Error(error);
     } else {
       display.textContent += ".";
     }
@@ -108,7 +111,9 @@ function handleEqualClick() {
   const { numbers, operators } = getFormula(calculation);
   console.log(numbers);
   if (numbers.length < 2 || numbers.includes(NaN)) {
-    throw new Error("Es müssen mindestens 2 Zahlen gegeben sein!");
+    let error = "Es müssen mindestens 2 Zahlen gegeben sein!";
+    activateSnackbar(error);
+    throw new Error(error);
   } else {
     const result = calculate(numbers, operators);
     display.textContent = result;
@@ -220,7 +225,7 @@ function logCalculation(numbers, operators, result) {
 // Formel berechnen
 function calculate(numbers, operators) {
   // Kopien der originalen Arrays für Logging erstellen
-  const originalNumbers = [...numbers]; //extrahieren per spread-operator
+  const originalNumbers = [...numbers]; //per spread-operator daten aus dem array extrahieren
   const originalOperators = [...operators];
 
   // Zuerst Multiplikation und Division
@@ -252,6 +257,7 @@ function calculate(numbers, operators) {
   logCalculation(originalNumbers, originalOperators, result);
 
   disableOperators(false);
+  equal.disabled = true;
   return result;
 }
 
@@ -261,4 +267,13 @@ function showModal() {
 
 function hideModal() {
   modal.style.display = "none";
+}
+
+function activateSnackbar(error) {
+  snackBar.innerHTML = error;
+  snackBar.className = "show";
+
+  setTimeout(function () {
+    snackBar.className = snackBar.className.replace("show", "");
+  }, 3000);
 }
