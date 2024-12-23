@@ -11,6 +11,9 @@ const decimal = document.querySelector(".decimal");
 const clearButton = document.querySelector(".clear");
 const logTable = document.querySelector(".log");
 const clearLogButton = document.querySelector(".clearLog");
+const modal = document.getElementById("myModal");
+const openModalBtn = document.getElementsByClassName("openModalBtn")[0];
+const span = document.getElementsByClassName("close")[0];
 
 //EvenListener
 document.addEventListener("keydown", handleKeyPress);
@@ -21,6 +24,13 @@ inputFields.forEach((input) => {
 clearButton.addEventListener("click", clearInput);
 equal.addEventListener("click", handleEqualClick);
 clearLogButton.addEventListener("click", clearLog);
+openModalBtn.addEventListener("click", showModal);
+span.addEventListener("click", hideModal);
+window.addEventListener("click", (event) => {
+  if (event.target == modal) {
+    hideModal();
+  }
+});
 
 //Operatoren deaktivieren solange noch keine Zahl eingegeben wurde
 disableOperators(true);
@@ -189,6 +199,7 @@ function logCalculation(numbers, operators, result) {
         </tbody>
       </table>`;
     clearLogButton.removeAttribute("id");
+    openModalBtn.removeAttribute("id");
   }
 
   const tbody = logTable.querySelector("tbody"); // Zugriff auf den Tabellenkörper
@@ -241,4 +252,12 @@ function calculate(numbers, operators) {
 
   disableOperators(false);
   return result;
+}
+
+function showModal() {
+  modal.style.display = "block";
+}
+
+function hideModal() {
+  modal.style.display = "none";
 }
