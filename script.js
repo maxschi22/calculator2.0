@@ -46,7 +46,7 @@ function disableOperators(mode) {
 
 //Überprüfung ob letzter Char ein Operator oder ein Punkt ist
 function isLastCharOperatorOrDot(lastChar) {
-  return ["+", "*", "/", "."].includes(lastChar); // "-" entfernt
+  return ["+", "*", "/", ".", "-"].includes(lastChar);
 }
 
 // Key Handling
@@ -63,9 +63,10 @@ function handleKeyPress(event) {
     event.key === "/"
   ) {
     if (isLastCharOperatorOrDot(lastChar)) {
-      throw new Error("Auf einen Operator kann kein Operator folgen");
+      display.textContent = display.textContent.slice(0, -1) + key;
+    } else {
+      display.textContent += key;
     }
-    display.textContent += key;
   } else if (event.key === "Enter") {
     handleEqualClick();
   } else if (event.key === "Escape" || event.key === "Delete") {
@@ -219,7 +220,7 @@ function logCalculation(numbers, operators, result) {
 // Formel berechnen
 function calculate(numbers, operators) {
   // Kopien der originalen Arrays für Logging erstellen
-  const originalNumbers = [...numbers];
+  const originalNumbers = [...numbers]; //extrahieren per spread-operator
   const originalOperators = [...operators];
 
   // Zuerst Multiplikation und Division
