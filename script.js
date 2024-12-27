@@ -271,12 +271,12 @@ function calculate(numbers, operators) {
     }
   }
 
+  result = roundNumber(result, 2);
   // Logging mit den ursprünglichen Arrays und dem berechneten Ergebnis
   logCalculation(originalNumbers, originalOperators, result);
 
   disableOperators(false);
   equal.disabled = true;
-  result = roundNumber(result, 2);
   return result;
 }
 
