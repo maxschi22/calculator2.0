@@ -205,11 +205,15 @@ function clearLog() {
     <tbody>
     </tbody>
   </table>`;
+  hideModal();
+  openModalBtn.id = "hideElement";
 }
 
 let loggedCalculations = 0;
 // Operation loggen
 function logCalculation(numbers, operators, result) {
+  openModalBtn.removeAttribute("id"); // Logbutton aktivieren
+  clearLogButton.removeAttribute("id");
   if (!logTable.innerHTML.trim()) {
     logTable.innerHTML = `
       <table class="loggingTable">
@@ -221,8 +225,6 @@ function logCalculation(numbers, operators, result) {
         <tbody>
         </tbody>
       </table>`;
-    clearLogButton.removeAttribute("id");
-    openModalBtn.removeAttribute("id");
   }
 
   const tbody = logTable.querySelector("tbody"); // Zugriff auf den Tabellenkörper
