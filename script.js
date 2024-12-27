@@ -288,6 +288,7 @@ function hideModal() {
   modal.style.display = "none";
 }
 
+//Feedback für Fehleingaben
 function activateSnackbar(error) {
   snackBar.innerHTML = error;
   snackBar.className = "show";
@@ -297,11 +298,13 @@ function activateSnackbar(error) {
   }, 3000);
 }
 
+//Error Ausgabe und logging in der console
 function throwError(error) {
   activateSnackbar(error);
   throw new Error(error);
 }
 
+// Funktion zum Runden
 function roundNumber(number, precision) {
   var factor = Math.pow(10, precision);
   return Math.round(number * factor) / factor;
