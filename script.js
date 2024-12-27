@@ -8,9 +8,9 @@ const inputFields = document.querySelectorAll(".input");
 const operators = document.querySelectorAll(".operation");
 const equal = document.querySelector(".equal");
 const decimal = document.querySelector(".decimal");
-const clearButton = document.querySelector(".clear");
+const clearBtn = document.querySelector(".clear");
 const logTable = document.querySelector(".log");
-const clearLogButton = document.querySelector(".clearLog");
+const clearLogBtn = document.querySelector(".clearLog");
 const modal = document.getElementById("myModal");
 const openModalBtn = document.getElementsByClassName("openModalBtn")[0];
 const span = document.getElementsByClassName("close")[0];
@@ -22,9 +22,9 @@ document.addEventListener("keydown", deleteLastInput);
 inputFields.forEach((input) => {
   input.addEventListener("click", handleInputClick);
 });
-clearButton.addEventListener("click", clearInput);
+clearBtn.addEventListener("click", clearInput);
 equal.addEventListener("click", handleEqualClick);
-clearLogButton.addEventListener("click", clearLog);
+clearLogBtn.addEventListener("click", clearLog);
 openModalBtn.addEventListener("click", showModal);
 span.addEventListener("click", hideModal);
 window.addEventListener("click", (event) => {
@@ -213,7 +213,6 @@ let loggedCalculations = 0;
 // Operation loggen
 function logCalculation(numbers, operators, result) {
   openModalBtn.removeAttribute("id"); // Logbutton aktivieren
-  clearLogButton.removeAttribute("id");
   if (!logTable.innerHTML.trim()) {
     logTable.innerHTML = `
       <table class="loggingTable">
@@ -277,6 +276,7 @@ function calculate(numbers, operators) {
 
   disableOperators(false);
   equal.disabled = true;
+  result = roundNumber(result, 2);
   return result;
 }
 
@@ -300,4 +300,9 @@ function activateSnackbar(error) {
 function throwError(error) {
   activateSnackbar(error);
   throw new Error(error);
+}
+
+function roundNumber(number, precision) {
+  var factor = Math.pow(10, precision);
+  return Math.round(number * factor) / factor;
 }
