@@ -18,7 +18,6 @@ const snackBar = document.getElementById("snackbar");
 
 //EvenListener
 document.addEventListener("keydown", handleKeyPress);
-document.addEventListener("keydown", deleteLastInput);
 inputFields.forEach((input) => {
   input.addEventListener("click", handleInputClick);
 });
@@ -56,7 +55,9 @@ function handleKeyPress(event) {
   let lastChar = display.textContent.slice(-1);
   const key = event.key;
 
-  if (event.key >= "0" && event.key <= "9") {
+  if (event.key === "Backspace") {
+    display.textContent = display.textContent.slice(0, -1);
+  } else if (event.key >= "0" && event.key <= "9") {
     display.textContent += key;
   } else if (
     event.key === "+" ||
@@ -123,13 +124,6 @@ function handleEqualClick() {
 function clearInput() {
   disableOperators(true);
   display.textContent = "";
-}
-
-// Die Letzte eingabe auf dem Display rückgängig machen
-function deleteLastInput(event) {
-  if (event.key === "Backspace") {
-    display.textContent = display.textContent.slice(0, -1);
-  }
 }
 
 // Input in eine Formel umwandeln
