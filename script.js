@@ -33,6 +33,7 @@ window.addEventListener("click", (event) => {
   }
 });
 
+//TODO . darf nur einmal in einer Zahlenfolge vorkommen wird bisher noch nicht behandelt.
 //Operatoren deaktivieren solange noch keine Zahl eingegeben wurde
 disableOperators(true);
 
