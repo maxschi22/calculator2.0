@@ -1,6 +1,7 @@
 :root{
     --text-size: 4vh;
     --display-text-size: 3vh;
+    --button-text-size: 2vh;
     --button-gap: 1px;
     --div-background-color: #3b3f3f;
     --button-background-color: #00fddc;
@@ -30,6 +31,7 @@ button{
     height: 50px;
     width: 50px;
     border-radius: var(--border-radius-all);
+    font-size: var(--button-text-size);
 }
 
 h1{
@@ -80,7 +82,7 @@ h1{
 }
 
 .input{
-    font-size: var(--text-size);
+    font-size: var(--display-text-size);
 }
 
 .numbers{
@@ -119,10 +121,6 @@ th {
     border-radius: var(--border-radius-table);
     max-height: 400px;
     overflow-y: auto;
-}
-
-.logging{
-    font-size: var(--text-size);
 }
 
 .loggingTable {

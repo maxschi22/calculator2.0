@@ -198,7 +198,7 @@ function clearLog() {
   logTable.innerHTML = `
   <table class="loggingTable">
     <thead>
-            <th>Geloggte Rechnungen</th>
+            <th colspan="2">Geloggte Rechnungen</th>
     </thead>
     <tbody>
     </tbody>
