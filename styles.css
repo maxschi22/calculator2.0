@@ -212,8 +212,8 @@ button:active{
 #snackbar {
     font-size: var(--display-text-size);
     visibility: hidden; /* Hidden by default. Visible on click */
-    min-width: 150px; /* Set a default minimum width */
-    margin-left: -125px; /* Divide value of min-width by 2 */
+    min-width: 100px; /* Set a default minimum width */
+    margin-left: -50px; /* Divide value of min-width by 2 */
     background-color: var(--div-background-color); /* Black background color */
     color: #fff; /* White text color */
     text-align: center; /* Centered text */
