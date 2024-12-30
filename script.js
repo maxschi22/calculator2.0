@@ -107,7 +107,7 @@ function handleInputClick(event) {
 // Ausführung von Operationen
 function handleEqualClick() {
   const calculation = display.textContent;
-  const { numbers, operators } = getFormula(calculation);
+  const { numbers, operators } = getFormula(calculation); //destruktor extrahiert die Werte von getFormula
   console.log(numbers);
   if (numbers.length < 2 || numbers.includes(NaN)) {
     let error = "Es müssen mindestens 2 Zahlen gegeben sein!";
@@ -198,9 +198,7 @@ function clearLog() {
   logTable.innerHTML = `
   <table class="loggingTable">
     <thead>
-          <tr>
             <th>Geloggte Rechnungen</th>
-          </tr>
     </thead>
     <tbody>
     </tbody>
