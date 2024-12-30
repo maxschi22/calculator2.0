@@ -49,6 +49,7 @@ h1{
     width: 40%;
     border-radius: var(--border-radius-all);
     overflow:auto;
+    padding-bottom: 30px;
 }
 
 @media(max-width: 600px){
@@ -93,19 +94,8 @@ h1{
     gap: var(--button-gap);
 }
 
-.number{
+.number, .decimal, .equal{
     height: 70px;
-    width: 100%;
-}
-
-.number:last-child {
-    grid-column: 2 / 3;
-}
-
-.specials{
-    display: flex;
-    justify-content: center;
-    gap: var(--button-gap);
     width: 100%;
 }
 
@@ -170,7 +160,7 @@ button:active{
 
 .openModalBtn{
     margin-top: 4%;
-    width: 15%;
+    width: auto;
 }
 
 #hideElement{
