@@ -262,11 +262,9 @@ function calculate(numbers, operators) {
   // Dann Addition und Subtraktion
   let result = numbers[0];
   for (let i = 0; i < operators.length; i++) {
-    if (operators[i] === "+") {
-      result += numbers[i + 1];
-    } else if (operators[i] === "-") {
-      result -= numbers[i + 1];
-    }
+    operators[i] === "+"
+      ? (result += numbers[i + 1])
+      : (result -= numbers[i + 1]);
   }
 
   result = roundNumber(result, 2);
