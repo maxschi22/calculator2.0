@@ -215,9 +215,7 @@ function logCalculation(numbers, operators, result) {
     logTable.innerHTML = `
       <table class="loggingTable">
         <thead>
-          <tr>
             <th colspan="2">Geloggte Rechnungen</th>
-          </tr>
         </thead>
         <tbody>
         </tbody>

@@ -6,12 +6,13 @@
     --button-background-color: #00fddc;
     --border-radius-all: 15px;
     --border-radius-table: 15px 0px 0px 15px;
+    --classic-background-color: rgb(181, 181, 181);
 }
 
 body{
     margin: 0;
     font-size: var(--text-size);
-    background-color: rgb(181, 181, 181);
+    background-color: var(--classic-background-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -149,10 +150,20 @@ button:active{
 
 .logContainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(181, 181, 181);
+    background-color: var(--classic-background-color);
 }
+
+.btnContainer{
+    background-color: var(--classic-background-color);
+}
+
+.tableContainer{
+    background-color: var(--classic-background-color);
+}
+
 .clearLog{
     width: auto;
     border-radius: 0;
