@@ -21,7 +21,7 @@ const squareRoot = document.querySelector(".squareRoot");
 //EvenListener
 document.addEventListener("keydown", handleKeyPress);
 inputFields.forEach((input) => {
-  input.addEventListener("click", handleInputClick);
+  input.addEventListener("click", handleInput);
 });
 clearBtn.addEventListener("click", clearInput);
 square.addEventListener("click", toSquare);
@@ -64,7 +64,7 @@ function handleKeyPress(event) {
   } else if ((event.key == "(") | (event.key == ")")) {
     display.textContent += key;
   } else if (event.key >= "0" && event.key <= "9") {
-    display.textContent += key;
+    handleInput(key);
   } else if (
     event.key === "+" ||
     event.key === "-" ||
@@ -74,7 +74,7 @@ function handleKeyPress(event) {
     if (isLastCharOperatorOrDot(lastChar)) {
       display.textContent = display.textContent.slice(0, -1) + key;
     } else {
-      display.textContent += key;
+      handleInput(key);
     }
   } else if (event.key === "Enter") {
     handleEqualClick();
@@ -90,9 +90,12 @@ function handleKeyPress(event) {
   }
 }
 
-//Eingaben anzeigen
-function handleInputClick(event) {
-  const value = event.target.textContent;
+//Eingaben die per Tastendrucker oder MausClick getätigt werden anzeigen
+function handleInput(event) {
+  let value = event;
+  if (event instanceof PointerEvent) {
+    value = event.target.textContent;
+  }
   display.textContent += value; // Wert an den Display anhängen
 
   // Überprüfen, ob der letzte Charakter ein Operator oder ein leerer String ist
