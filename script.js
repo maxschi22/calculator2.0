@@ -16,6 +16,7 @@ const openModalBtn = document.getElementsByClassName("openModalBtn")[0];
 const span = document.getElementsByClassName("close")[0];
 const snackBar = document.getElementById("snackbar");
 const square = document.querySelector(".square");
+const squareRoot = document.querySelector(".squareRoot");
 
 //EvenListener
 document.addEventListener("keydown", handleKeyPress);
@@ -24,6 +25,7 @@ inputFields.forEach((input) => {
 });
 clearBtn.addEventListener("click", clearInput);
 square.addEventListener("click", toSquare);
+squareRoot.addEventListener("click", extractRoot);
 equal.addEventListener("click", handleEqualClick);
 clearLogBtn.addEventListener("click", clearLog);
 openModalBtn.addEventListener("click", showModal);
@@ -139,7 +141,7 @@ function toSquare() {
 
   if (!number.includes(["+", "-", "*", "/"])) {
     if (result == "0") {
-      error = "Quadrieren nicht möglich: 0 kann nicht multipliziert werden";
+      error = "Quadrieren nicht möglich: 0*0=0";
       throwError(error);
     } else if (isNaN(result)) {
       error =
@@ -147,6 +149,26 @@ function toSquare() {
       throwError(error);
     }
     logCalculation(numbers, "*", result);
+    display.textContent = result;
+  } else {
+    throwError(error);
+  }
+}
+
+function extractRoot() {
+  number = display.textContent;
+  result = Math.sqrt(number);
+  error = "Wurzel ziehen nicht möglich: Unbekannte Ursache";
+
+  if (!number.includes(["+", "-", "*", "/"])) {
+    if (result == "0") {
+      error = "Wurzel ziehen nicht möglich: 0";
+      throwError(error);
+    } else if (isNaN(result)) {
+      error =
+        "Wurzel ziehen nicht möglich: Aus einer Operation kann keine Wurzel gezogen werden";
+      throwError(error);
+    }
     display.textContent = result;
   } else {
     throwError(error);
