@@ -130,6 +130,7 @@ function clearInput() {
   display.textContent = "";
 }
 
+//Quadrieren
 function toSquare() {
   number = display.textContent;
   numbers = [number, number];
@@ -207,6 +208,7 @@ function getFormula(expression) {
   for (let i = 0; i < operators.length; i++) {
     if (operators[i] === "/" && numbers[i + 1] === 0) {
       let error = "Division durch 0 ist nicht erlaubt!";
+      clearInput();
       throwError(error);
     }
   }
