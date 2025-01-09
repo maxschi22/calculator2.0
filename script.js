@@ -15,6 +15,7 @@ const modal = document.getElementById("myModal");
 const openModalBtn = document.getElementsByClassName("openModalBtn")[0];
 const span = document.getElementsByClassName("close")[0];
 const snackBar = document.getElementById("snackbar");
+const square = document.querySelector(".square");
 
 //EvenListener
 document.addEventListener("keydown", handleKeyPress);
@@ -22,6 +23,7 @@ inputFields.forEach((input) => {
   input.addEventListener("click", handleInputClick);
 });
 clearBtn.addEventListener("click", clearInput);
+square.addEventListener("click", toSquare);
 equal.addEventListener("click", handleEqualClick);
 clearLogBtn.addEventListener("click", clearLog);
 openModalBtn.addEventListener("click", showModal);
@@ -32,7 +34,7 @@ window.addEventListener("click", (event) => {
   }
 });
 
-//TODO . darf nur einmal in einer Zahlenfolge vorkommen wird bisher noch nicht behandelt.
+//TODO . darf nur einmal in einer Zahlenfolge vorkommen, wird bisher noch nicht behandelt.
 //Operatoren deaktivieren solange noch keine Zahl eingegeben wurde
 disableOperators(true);
 
@@ -57,6 +59,8 @@ function handleKeyPress(event) {
 
   if (event.key === "Backspace") {
     display.textContent = display.textContent.slice(0, -1);
+  } else if ((event.key == "(") | (event.key == ")")) {
+    display.textContent += key;
   } else if (event.key >= "0" && event.key <= "9") {
     display.textContent += key;
   } else if (
@@ -124,6 +128,28 @@ function handleEqualClick() {
 function clearInput() {
   disableOperators(true);
   display.textContent = "";
+}
+
+function toSquare() {
+  number = display.textContent;
+  numbers = [number, number];
+  result = number * number;
+  error = "Quadrieren nicht möglich: Unbekannte Ursache";
+
+  if (!number.includes(["+", "-", "*", "/"])) {
+    if (result == "0") {
+      error = "Quadrieren nicht möglich: 0 kann nicht multipliziert werden";
+      throwError(error);
+    } else if (isNaN(result)) {
+      error =
+        "Quadrieren nicht möglich: Operationen können nicht Quadriert werden";
+      throwError(error);
+    }
+    logCalculation(numbers, "*", result);
+    display.textContent = result;
+  } else {
+    throwError(error);
+  }
 }
 
 // Input in eine Formel umwandeln
