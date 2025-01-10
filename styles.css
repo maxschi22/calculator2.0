@@ -5,7 +5,7 @@
     --button-gap: 1px;
     --div-background-color: #3b3f3f;
     --button-background-color: #00fddc;
-    --border-radius-all: 15px;
+    --border-radius-all: 10px;
     --border-radius-table: 15px 0px 0px 15px;
     --classic-background-color: rgb(181, 181, 181);
 }
@@ -76,7 +76,7 @@ h1{
     font-size: var(--display-text-size);
 }
 
-.operations{
+.operations, .additionalOperations{
     display:flex;
     justify-content: center;
     gap: var(--button-gap);

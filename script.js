@@ -158,6 +158,7 @@ function toSquare() {
   }
 }
 
+//Wurzel ziehen
 function extractRoot() {
   number = display.textContent;
   result = Math.sqrt(number);
@@ -184,20 +185,22 @@ function getFormula(expression) {
   const operators = [];
   let currentNumber = "";
 
+  //Schleife die Zeichen für Zeichen der Eingabe durchläuft
   for (let i = 0; i < expression.length; i++) {
     const char = expression[i];
-
     if ((char >= "0" && char <= "9") || char === ".") {
+      //Wenn Eingabe eine Ziffer oder ein . wird die Eingabe an die currentNumber angehangen.
       currentNumber += char;
     } else if (char === "+" || char === "*" || char === "/") {
-      // Zahl beenden und Operator hinzufügen
+      //Wenn Eingabe einem Operator entspricht, wird die Eingabe in eine Zahl umgewandelt
       if (currentNumber !== "") {
-        numbers.push(parseFloat(currentNumber));
-        currentNumber = "";
+        numbers.push(parseFloat(currentNumber)); //Zahl wird ins numbers array gepusht
+        currentNumber = ""; //Zahl wird zurückgesetzt
       }
-      operators.push(char);
+      operators.push(char); // Operator hinzufügen zum operators array
     } else if (char === "-") {
-      // Unterscheidung: Operator oder Vorzeichen?
+      //- Wird extra behandelt, da es auch als Vorzeichen verstanden werden kann.
+      // Unterscheidung: Operator oder Vorzeichen
       if (
         i === 0 || // Am Anfang der Eingabe
         ["+", "-", "*", "/"].includes(expression[i - 1]) // Nach einem anderen Operator
@@ -206,19 +209,38 @@ function getFormula(expression) {
       } else {
         // Zahl beenden und Operator hinzufügen
         if (currentNumber !== "") {
-          numbers.push(parseFloat(currentNumber));
-          currentNumber = "";
+          numbers.push(parseFloat(currentNumber)); //Zahl wird ins numbers array gepusht
+          currentNumber = ""; //Zahl wird zurückgesetzt
         }
-        operators.push(char);
+        operators.push(char); // - Wird als Operator hinzugefügt
       }
     }
   }
 
   if (currentNumber !== "") {
-    numbers.push(parseFloat(currentNumber)); // Letzte Zahl hinzufügen
+    numbers.push(parseFloat(currentNumber)); // Wenn currenNumber nicht leer wird die Zahl noch ins numbers array hinzugefügt um die letzte Zahl zu erfassen
   }
 
   // Überprüfen, ob der letzte Operator in der Liste ein Operator ist, aber nur, wenn auch wirklich ein Operator vorhanden ist
+  isLastCharOperator(operators, numbers);
+
+  // Division durch 0 prüfen
+  isDivideByZero(operators);
+
+  return { numbers, operators };
+}
+
+function isDivideByZero(operators) {
+  for (let i = 0; i < operators.length; i++) {
+    if (operators[i] === "/" && numbers[i + 1] === 0) {
+      let error = "Division durch 0 ist nicht erlaubt!";
+      clearInput();
+      throwError(error);
+    }
+  }
+}
+
+function isLastCharOperator(operators, numbers) {
   if (
     operators.length > 0 &&
     ["+", "-", "*", "/"].includes(operators[operators.length - 1]) &&
@@ -228,17 +250,6 @@ function getFormula(expression) {
       "Die Eingabe endet mit einem Operator. Bitte überprüfen Sie die Eingabe!";
     throwError(error);
   }
-
-  // Division durch 0 prüfen
-  for (let i = 0; i < operators.length; i++) {
-    if (operators[i] === "/" && numbers[i + 1] === 0) {
-      let error = "Division durch 0 ist nicht erlaubt!";
-      clearInput();
-      throwError(error);
-    }
-  }
-
-  return { numbers, operators };
 }
 
 function clearLog() {
@@ -287,7 +298,7 @@ function logCalculation(numbers, operators, result) {
 // Formel berechnen
 function calculate(numbers, operators) {
   // Kopien der originalen Arrays für Logging erstellen
-  const originalNumbers = [...numbers]; //per spread-operator daten aus dem array extrahieren
+  const originalNumbers = [...numbers]; //per spread-operator daten aus dem array kopieren, damit änderungen keinen Einfluss haben aufeinander
   const originalOperators = [...operators];
 
   // Zuerst Multiplikation und Division
@@ -313,7 +324,7 @@ function calculate(numbers, operators) {
       : (result -= numbers[i + 1]);
   }
 
-  result = roundNumber(result, 2);
+  result = roundNumber(result, 2); // Auf 2 Nachkommastellen runden
   // Logging mit den ursprünglichen Arrays und dem berechneten Ergebnis
   logCalculation(originalNumbers, originalOperators, result);
 
@@ -322,10 +333,12 @@ function calculate(numbers, operators) {
   return result;
 }
 
+//Modal aktivieren
 function showModal() {
   modal.style.display = "block";
 }
 
+//Modal deaktivieren
 function hideModal() {
   modal.style.display = "none";
 }
@@ -347,7 +360,7 @@ function throwError(error) {
 }
 
 // Funktion zum Runden
-function roundNumber(number, precision) {
-  var factor = Math.pow(10, precision);
+function roundNumber(number, decimals) {
+  var factor = Math.pow(10, decimals);
   return Math.round(number * factor) / factor;
 }
